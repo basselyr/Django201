@@ -34,6 +34,12 @@
                 </a>
               </li>
               <li>
+                <a href="{%url 'profiles:edit' %}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                  <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class='bx bx-edit-alt'></i></span>
+                  <span class="text-sm font-medium">Edit Profile</span>
+                </a>
+              </li>
+              <li>
                   <a href="{% url 'account_logout' %}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                   <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class="bx bx-log-out"></i></span>
                   <span class="text-sm font-medium">Logout</span>
@@ -47,7 +53,7 @@
                   </a>
               </li>
               <li>
-                <a href="{% url 'account_signup' %}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
+                <a href="{%url 'account_signup'%}" class="flex flex-row items-center h-12 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-500 hover:text-gray-800">
                 <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-gray-400"><i class='bx bx-user-plus'></i></span>
                 <span class="text-sm font-medium">Sign up</span>
                 </a>
@@ -55,7 +61,7 @@
             {% endif %}
           </ul>
         </div>
-        <div class="p-16">
+        <div class="p-8 w-9/12">
           {% block body %}
               {% block content %}{% endblock %}
           {% endblock %}

@@ -1,12 +1,15 @@
 from typing import Any, Dict
-from django import http
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.views.generic import DetailView, View
 from feed.models import Post
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponseBadRequest
 from followers.models import Follower
-
+from .forms import UpdateProfile, UpdateUser
+from .models import Profile
+from django.contrib import messages
+from sorl.thumbnail import ImageField
 
 # Create your views here.
 
@@ -77,3 +80,19 @@ class FollowView(LoginRequiredMixin, View):
             'success': True,
             'wording': "Unfollow" if data['action'] == "follow" else "Follow"
         })
+
+def profupdate(request):
+    if request.method == 'POST':
+        user_form = UpdateUser(request.POST, instance=request.user)
+        profile_form = UpdateProfile(request.POST, request.FILES,instance=request.user.profile)
+    
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "Your profile has been updated successfully.")
+            return redirect(to="/")
+    else:
+        user_form = UpdateUser(instance=request.user)
+        profile_form = UpdateProfile(instance=request.user.profile)
+    
+    return render(request, 'profiles/update.html', {'user_form': user_form, 'profile_form': profile_form})

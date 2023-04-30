@@ -3,7 +3,7 @@
 {%block title%}Home Page{% endblock %}
 
 {%block body%} 
-    <div id="posts-container">
+    <div class="flex flex-wrap justify-center" id="posts-container">
         {%for post in posts %}
             {% include "includes/post.html" with post=post show_detail_link=True%}
         {% endfor %}
