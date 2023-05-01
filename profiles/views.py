@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse, HttpResponseBadRequest
 from followers.models import Follower
 from .forms import UpdateProfile, UpdateUser
-from .models import Profile
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from sorl.thumbnail import ImageField
 
@@ -81,6 +81,7 @@ class FollowView(LoginRequiredMixin, View):
             'wording': "Unfollow" if data['action'] == "follow" else "Follow"
         })
 
+@login_required
 def profupdate(request):
     if request.method == 'POST':
         user_form = UpdateUser(request.POST, instance=request.user)

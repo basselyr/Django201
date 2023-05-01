@@ -40,7 +40,7 @@
             </div>
             {% if request.user.is_authenticated %}
                 {%if request.user != user %}
-                    <div class="mt-6 ">
+                    <div class="mt-6 "> grid grid-cols-2 gap-4
                         <button class="w-full rounded-xl border-2 bg-white px-3 py-2 font-semibold  hover:text-white js-follow {{ followStyle }}" data-username = "{{user.username}}" data-action="{{ followAction }}" data-url="{%url 'profiles:follow' user.username%}"> <span class="js-follow-text">{% if you_follow%}
                             Unfollow
                         {%else%}
