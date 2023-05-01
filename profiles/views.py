@@ -84,7 +84,7 @@ class FollowView(LoginRequiredMixin, View):
 def profupdate(request):
     if request.method == 'POST':
         user_form = UpdateUser(request.POST, instance=request.user)
-        profile_form = UpdateProfile(request.POST, request.FILES,instance=request.user.profile)
+        profile_form = UpdateProfile(request.POST, request.FILES, instance=request.user.profile)
     
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
